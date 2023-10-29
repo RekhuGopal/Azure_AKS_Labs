@@ -54,6 +54,5 @@ jobs:
 
       - name: Deploy Application
         run: |
-          echo "$kube_config" > ./azurek8s
-          export KUBECONFIG=./azurek8s
+          az aks get-credentials -n "cluster-bursting-jennet" -g "rg-refined-swine"
           kubectl get nodes
