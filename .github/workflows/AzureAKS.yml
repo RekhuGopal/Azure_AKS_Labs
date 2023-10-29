@@ -8,6 +8,10 @@ permissions:
 jobs: 
   AKS-Cluster-Deployment:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: AKS
     steps:
       - name: 'Az CLI login'
         uses: azure/login@v1
@@ -16,7 +20,28 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   
-      - name: 'Run az commands'
-        run: |
-          az account show
-          az group list
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.2
+        with:
+          terraform_version: latest
+          cli_config_credentials_token: ${{ secrets.TFC_TOKEN_ID }}
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+      
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
