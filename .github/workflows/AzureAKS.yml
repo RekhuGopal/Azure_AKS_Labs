@@ -49,6 +49,9 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: Terraform Output
+        run: terraform output
+
       - name: Deploy Application
         run: |
           resource_group_name=$(terraform output resource_group_name)
