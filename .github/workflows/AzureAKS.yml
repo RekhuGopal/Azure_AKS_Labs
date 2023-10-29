@@ -54,7 +54,6 @@ jobs:
 
       - name: Deploy Application
         run: |
-          az aks list --resource-group $resource_group_name --query "[].{\"K8s cluster name\":name}" --output table
           echo "$(terraform output kube_config)" > ./azurek8s
           export KUBECONFIG=./azurek8s
           kubectl get nodes
