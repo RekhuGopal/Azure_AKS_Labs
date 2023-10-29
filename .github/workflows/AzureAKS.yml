@@ -54,5 +54,5 @@ jobs:
 
       - name: Deploy Application
         run: |
-          az aks get-credentials -n "cluster-bursting-jennet" -g "rg-refined-swine"
+          az aks get-credentials -n $kubernetes_cluster_name -g $resource_group_name
           kubectl get nodes
