@@ -47,13 +47,13 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve  -json 
+        run: terraform apply -auto-approve
 
       - name: Terraform Output
         run: terraform output
 
       - name: Deploy Application
         run: |
-          echo "$(terraform output kube_config)" > ./azurek8s
+          echo "$kube_config" > ./azurek8s
           export KUBECONFIG=./azurek8s
           kubectl get nodes
