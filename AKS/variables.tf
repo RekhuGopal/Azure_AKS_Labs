@@ -13,7 +13,7 @@ variable "resource_group_name_prefix" {
 variable "node_count" {
   type        = number
   description = "The initial quantity of nodes for the node pool."
-  default     = 3
+  default     = 2
 }
 
 variable "msi_id" {
