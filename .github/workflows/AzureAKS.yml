@@ -47,7 +47,7 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -o yaml
+        run: terraform apply -auto-approve  -json 
 
       - name: Terraform Output
         run: terraform output
