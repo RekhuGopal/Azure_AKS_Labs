@@ -58,3 +58,4 @@ jobs:
           kubectl apply -f ./AKSApp/aks-store-quickstart.yaml
           sleep 40
           kubectl get service store-front
+          rm -rf ~/.kube
