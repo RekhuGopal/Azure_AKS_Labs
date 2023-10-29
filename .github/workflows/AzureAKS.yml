@@ -54,5 +54,7 @@ jobs:
 
       - name: Deploy Application
         run: |
-          az aks get-credentials -n $(terraform output kubernetes_cluster_name) -g $(terraform output resource_group_name)
-          kubectl get nodes
+          az aks get-credentials -n "cluster-bursting-jennet" -g "rg-refined-swine"
+          kubectl apply -f ./AKSApp/aks-store-quickstart.yaml
+          sleep 40
+          kubectl get service store-front
