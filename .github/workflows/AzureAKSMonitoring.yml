@@ -54,7 +54,7 @@ jobs:
 
       - name: AKS Monitroing Enabler
         run: |
-          az aks get-credentials -n "cluster-bursting-jennet" -g "rg-refined-swine"
+          az aks get-credentials -n "cluster-definite-seahorse" -g "rg-hip-urchin"
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
           helm repo update
           helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring --create-namespace
