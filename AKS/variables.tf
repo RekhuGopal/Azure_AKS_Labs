@@ -1,3 +1,4 @@
+/*
 variable "resource_group_location" {
   type        = string
   default     = "eastus"
@@ -27,3 +28,4 @@ variable "username" {
   description = "The admin username for the new cluster."
   default     = "azureadmin"
 }
+*/
