@@ -1,7 +1,7 @@
 /*
 variable "resource_group_location" {
   type        = string
-  default     = "eastus"
+  default     = "francecentral"
   description = "Location of the resource group."
 }
 
@@ -26,6 +26,6 @@ variable "msi_id" {
 variable "username" {
   type        = string
   description = "The admin username for the new cluster."
-  default     = "azureadmin"
+  default     = "rmateus1906"
 }
 */
