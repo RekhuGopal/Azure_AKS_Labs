@@ -1,27 +1,27 @@
 # Generate random resource group name
 /*
-resource "random_pet" "rg_name" {
+resource "GitOps AZ Tests" "rg_name" {
   prefix = var.resource_group_name_prefix
 }
 
 resource "azurerm_resource_group" "rg" {
   location = var.resource_group_location
-  name     = random_pet.rg_name.id
+  name     = GitOps_az_tests.rg_name.id
 }
 
-resource "random_pet" "azurerm_kubernetes_cluster_name" {
+resource "GitOps_az_tests" "azurerm_kubernetes_cluster_name" {
   prefix = "cluster"
 }
 
-resource "random_pet" "azurerm_kubernetes_cluster_dns_prefix" {
+resource "GitOps_az_tests" "azurerm_kubernetes_cluster_dns_prefix" {
   prefix = "dns"
 }
 
 resource "azurerm_kubernetes_cluster" "k8s" {
   location            = azurerm_resource_group.rg.location
-  name                = random_pet.azurerm_kubernetes_cluster_name.id
+  name                = GitOps_az_tests.azurerm_kubernetes_cluster_name.id
   resource_group_name = azurerm_resource_group.rg.name
-  dns_prefix          = random_pet.azurerm_kubernetes_cluster_dns_prefix.id
+  dns_prefix          = GitOps_az_tests.azurerm_kubernetes_cluster_dns_prefix.id
 
   identity {
     type = "SystemAssigned"
