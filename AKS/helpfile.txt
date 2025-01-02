@@ -1,0 +1,30 @@
+## Update Kubeconfig
+az aks get-credentials --resource-group rg-lenient-deer --name cluster-lenient-deer --overwrite-existing
+
+## port forwarding
+kubectl port-forward svc/nginx-service 8080:80
+
+## Check which Kubernetes releases are available for your cluster using the az aks get-upgrades command.
+az aks get-upgrades --resource-group rg-lenient-deer --name cluster-lenient-deer --output table
+
+## Upgrade your cluster using the az aks upgrade command.
+az aks upgrade --resource-group rg-lenient-deer --name cluster-lenient-deer --kubernetes-version 1.30.2 --control-plane-only
+
+## Confirm the upgrade was successful using the az aks show command.
+az aks show --resource-group rg-lenient-deer --name cluster-lenient-deer --output table
+
+---------------------------------------------------------------------------------------------
+##Check for available node image upgrades
+
+# Check for available node image upgrades using the az aks nodepool get-upgrades command.
+az aks nodepool get-upgrades --nodepool-name agentpool --cluster-name cluster-lenient-deer --resource-group rg-lenient-deer
+
+# Check your current node image version to compare with the latest version using the az aks nodepool show command.
+az aks nodepool show --resource-group rg-lenient-deer --cluster-name cluster-lenient-deer --name agentpool --query nodeImageVersion
+
+# Upgrade all node images in all node pools
+# Upgrade all node images in all node pools in your cluster using the az aks upgrade command with the --node-image-only flag.
+az aks upgrade --resource-group rg-lenient-deer --name cluster-lenient-deer  --node-image-only
+
+# When the upgrade completes, use the az aks show command to get the updated node pool details. The current node image is shown in the nodeImageVersion property.
+az aks show --resource-group rg-lenient-deer --name cluster-lenient-deer 

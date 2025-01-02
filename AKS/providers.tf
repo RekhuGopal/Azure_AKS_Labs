@@ -19,14 +19,6 @@ terraform {
       version = "0.9.1"
     }
   }
-  backend "remote" {
-		hostname = "app.terraform.io"
-		organization = "CloudQuickLabs"
-
-		workspaces {
-			name = "AzureAKSLabs"
-		}
-	}
 }
 
 provider "azurerm" {
